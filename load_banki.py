@@ -1,16 +1,24 @@
 import requests
 import sqlite3 as lite
 import time
+import datetime
+from paths import *
 
 class NewsGetter:
     conn = None
     c = None
+    CURR_YEAR = str(datetime.date.year)
+
 
     def __init__(self, _conn):
         self.conn = _conn
         self.c = self.conn.cursor()
 
     def get_news(self, month_num):
+        if len(month_num) == 1:
+            month_num = '0' + month_num
+
+
         pass
 
 
@@ -49,7 +57,9 @@ class LinksSeeker:
             # time.sleep(1)
 
 
-db_path = "C:/my_folder/bases/banki/articles.db"
+db_path = get_right_path(db_paths)
+DB_NAME = 'banki.db'
+
 conn = lite.connect(db_path)
 # seeker = LinksSeeker(conn)
 news_getter = NewsGetter(conn)
